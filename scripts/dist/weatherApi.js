@@ -1,7 +1,8 @@
-import { mostrarError } from "./ui.js";
+import { showWeather, showError, showTomorrowAdvice } from "./ui.js";
 // Intenta obtener la localización real del usuario; si no, usa la de Barcelona
 export async function getUserLocation() {
-    let lat = 41.3888, lon = 2.159; // Barcelona por defecto
+    let lat = 41.3888;
+    let lon = 2.159; // Barcelona por defecto
     if (navigator.geolocation) {
         try {
             const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
@@ -12,7 +13,10 @@ export async function getUserLocation() {
             // Si falla, usa Barcelona
         }
     }
-    await fetchCurrentWeather(lat, lon);
+    const currentWeather = await fetchCurrentWeather(lat, lon);
+    currentWeather ? showWeather(currentWeather) : showError("No se pudo obtener la información del tiempo.");
+    const tomorrowWeather = await getTomorrowWeather(lat, lon);
+    tomorrowWeather ? showTomorrowAdvice(tomorrowWeather) : showError("No se pudo obtener la previsión del tiempo para mañana.");
 }
 // recoge los datos de fetchWeatherData(), filtra x los relevantes y los devuelve como objeto (datos de hoy)
 export async function fetchCurrentWeather(lat, lon) {
@@ -47,7 +51,7 @@ async function fetchWeatherData(latitude, longitude) {
         return await res.json();
     }
     catch (error) {
-        mostrarError("Error: No se pudo cargar el tiempo");
+        showError("Error: No se pudo cargar el tiempo");
         console.log(error);
         return null;
     }

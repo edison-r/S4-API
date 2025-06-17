@@ -1,14 +1,14 @@
 const weatherDisplay = document.getElementById("weather__display");
 const adviceDisplay = document.querySelector("#weather__advice");
 // Funciones auxiliares para mostrar o mensajes o mensajes de error
-export const mostrarError = (mensaje) => {
+export const showError = (mensaje) => {
     weatherDisplay.innerHTML = "";
     const error = document.createElement("p");
     error.textContent = mensaje;
     error.className = 'text-red-400 mt-2 font-medium';
     weatherDisplay.appendChild(error);
 };
-export const mostrarMensaje = (mensaje) => {
+export const mostrarMessage = (mensaje) => {
     weatherDisplay.innerHTML = "";
     const msg = document.createElement("p");
     msg.textContent = mensaje;
@@ -21,11 +21,15 @@ export function showWeather(weather) {
         return;
     const icon = getWeatherIcon(weather.weather_code);
     weatherDisplay.innerHTML = `
-    <div class="text-4xl">${icon}</div>
-    <div>
-        <p>🌡️ ${weather.temperature}°C</p>
-        <p>🌧️ Precipitación: ${weather.precipitation_probability}%</p>
-        <p>🔆 UV Index: ${weather.uv_index}</p>
+    <div class="flex flex-row justify-start items-center text-gray-700 gap-3 px-4 py-2">
+        <div class="text-4xl">${icon}</div>
+        <p>
+            <span class="font-medium">🌡️ Temperatura: </span> ${weather.temperature}°C 
+            &nbsp;•&nbsp;
+            <span class="font-medium">🌧️ Precipitación: </span> ${weather.precipitation_probability}% 
+            &nbsp;•&nbsp;
+            <span class="font-medium">🔆 UV Index: </span> ${weather.uv_index}
+        </p>
     </div>
     `;
 }
@@ -33,7 +37,8 @@ export function showTomorrowAdvice(code) {
     if (!adviceDisplay)
         return;
     const message = getAdviceFromCode(code);
-    adviceDisplay.textContent = message;
+    adviceDisplay.innerHTML = message;
+    adviceDisplay.className = 'text-md w-full text-gray-700 px-4 py-1';
 }
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
 const getWeatherIcon = (code) => {
