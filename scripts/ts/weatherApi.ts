@@ -1,45 +1,62 @@
-import { WeatherResponse } from "./types.js"; 
-import { mostrarError, mostrarMensaje } from "./ui.js";
+import { WeatherResponse, CurrentWeatherInfo } from "./types.js"; 
+import { mostrarError, showWeather } from "./ui.js";
 
-// Recogemos la localización del usuario 
-export function getUserLocation(): void{
+// Intenta obtener la localización real del usuario; si no, usa la de Barcelona
+export async function getUserLocation(): Promise<void> {
+    let lat = 41.3888, lon = 2.159; // Barcelona por defecto
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            bringWeather(lat, lon);    
-        });
-    } else {
-        const lat = 41.3888;
-        const lon = 2.159;
-        bringWeather(lat, lon);
+        try {
+            const position = await new Promise<GeolocationPosition>((resolve, reject) =>
+                navigator.geolocation.getCurrentPosition(resolve, reject)
+            );
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+        } catch {
+            // Si falla, usa Barcelona
+        }
     }
+    await fetchCurrentWeather(lat, lon);
 }
 
-export async function bringWeather(latitude: number, longitude: number): Promise<WeatherResponse | null> {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,uv_index,precipitation_probability&daily=weather_code&forecast_days=3&timezone=auto`;
+// recoge los datos de fetchWeatherData(), filtra x los relevantes y los devuelve como objeto (datos de hoy)
+export async function fetchCurrentWeather(lat: number, lon: number): Promise<CurrentWeatherInfo | null> {
+    const data = await fetchWeatherData(lat, lon);
+    if (!data) return null;
 
+    const now = getCurrentDate(); // Recupero la fecha de hoy con formato que entiende la API
+    const index = data.hourly.time.findIndex((t) => t.startsWith(now)); // Buscamos la hora actual en el índice
+    if(index === -1) return null;
+
+    return {
+        temperature: data.hourly.temperature_2m[index],
+        uv_index: data.hourly.uv_index[index],
+        precipitation_probability: data.hourly.precipitation_probability[index],
+        weather_code: data.daily.weather_code[0],
+    };
+}
+
+// función para previsión de mañana
+export async function getTomorrowWeather(lat: number, lon: number): Promise<number | null>{
+    const data = await fetchWeatherData(lat, lon);
+    if (!data) return null;
+    return data.daily.weather_code[1] ?? null;
+}
+
+// conexión a la API de open-meteo y retorno los datos en bruto
+async function fetchWeatherData(latitude: number, longitude: number): Promise<WeatherResponse | null> {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,uv_index,precipitation_probability&daily=weather_code&forecast_days=3&timezone=auto`;
     try {
         const res = await fetch(url);
-        
         if(!res.ok) throw new Error("No nos hemos podido conectar a la API del tiempo");
-        
-        const data: WeatherResponse = await res.json();
-        let now = getCurrentDate(); // Recupero la fecha de hoy con formato que entiende la API
-        // Buscamos la hora actual en el índice
-        const index = data.hourly.time.findIndex((time) => time.startsWith(now));
-        //console.log(data, now, index);
-
-        if(index === -1) throw new Error("Hora actual no encontrada");
-
-        return data
+        return await res.json();        
     } catch(error){
         mostrarError("Error: No se pudo cargar el tiempo");
-        //console.log(error);
+        console.log(error);
         return null;
     }
 }
 
+// recuperar la fecha con la hora en formato YY-MM-DDTHH 
 const getCurrentDate = (): string =>{
     const now = new Date();
     const year = now.getFullYear();
@@ -48,6 +65,5 @@ const getCurrentDate = (): string =>{
     const hour = String(now.getHours()).padStart(2, "0");
 
     const finalDate = `${year}-${month}-${day}T${hour}`;
-    //console.log(now, year, month, day, hour);
     return finalDate;
 }
