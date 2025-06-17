@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "outDir": "./scripts/dist",
+    "rootDir": "./scripts/ts",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["scripts/**/**/*.ts"]
+}
