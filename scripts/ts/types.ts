@@ -33,6 +33,7 @@ export type WeatherResponse = {
     hourly: HourlyData;
     daily: DailyData;
     current: CurrentWeatherInfo;
+    tomorrow: TomorrowWeatherInfo;
 };
 
 /**

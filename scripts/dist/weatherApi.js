@@ -1,4 +1,4 @@
-import { showWeather, showError, showTomorrowAdvice } from "./ui.js";
+import { showWeather, showError, showTomorrowAdvice } from "./weatherUI.js";
 // Intenta obtener la localización real del usuario; si no, usa la de Barcelona
 export async function getUserLocation() {
     let lat = 41.3888;
@@ -56,7 +56,7 @@ async function fetchWeatherData(latitude, longitude) {
         return null;
     }
 }
-// recuperar la fecha con la hora en formato YY-MM-DDTHH 
+// recuperar la fecha con la hora en formato YY-MM-DDTHH
 const getCurrentDate = () => {
     const now = new Date();
     const year = now.getFullYear();
