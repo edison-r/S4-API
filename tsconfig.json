@@ -3,7 +3,7 @@
     "target": "es2022",
     "module": "es2022",
     "outDir": "./scripts/dist",
-    "rootDir": "./scripts/ts",
+    "rootDir": "./scripts",
     "strict": true,
     "esModuleInterop": true
   },
