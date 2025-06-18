@@ -14,9 +14,9 @@ export async function getUserLocation() {
         }
     }
     const currentWeather = await fetchCurrentWeather(lat, lon);
-    currentWeather ? showWeather(currentWeather) : showError("No se pudo obtener la información del tiempo.");
+    currentWeather ? showWeather(currentWeather) : showError("Weather information could not be obtained.");
     const tomorrowWeather = await getTomorrowWeather(lat, lon);
-    tomorrowWeather ? showTomorrowAdvice(tomorrowWeather) : showError("No se pudo obtener la previsión del tiempo para mañana.");
+    tomorrowWeather ? showTomorrowAdvice(tomorrowWeather) : showError("Could not obtain tomorrows weather forecast.");
 }
 // recoge los datos de fetchWeatherData(), filtra x los relevantes y los devuelve como objeto (datos de hoy)
 export async function fetchCurrentWeather(lat, lon) {
@@ -47,11 +47,11 @@ async function fetchWeatherData(latitude, longitude) {
     try {
         const res = await fetch(url);
         if (!res.ok)
-            throw new Error("No nos hemos podido conectar a la API del tiempo");
+            throw new Error("We were unable to connect to the weather API");
         return await res.json();
     }
     catch (error) {
-        showError("Error: No se pudo cargar el tiempo");
+        showError("Error: Could not load the weather");
         console.log(error);
         return null;
     }

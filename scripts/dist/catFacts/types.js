@@ -1,1 +1,2 @@
-"use strict";
+// Types para cats y dogs
+export {};

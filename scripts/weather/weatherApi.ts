@@ -19,10 +19,10 @@ export async function getUserLocation(): Promise<void> {
     }
 
     const currentWeather = await fetchCurrentWeather(lat, lon);
-    currentWeather ? showWeather(currentWeather) : showError("No se pudo obtener la información del tiempo.");
+    currentWeather ? showWeather(currentWeather) : showError("Weather information could not be obtained.");
 
     const tomorrowWeather = await getTomorrowWeather(lat, lon);
-    tomorrowWeather ? showTomorrowAdvice(tomorrowWeather) : showError("No se pudo obtener la previsión del tiempo para mañana.");
+    tomorrowWeather ? showTomorrowAdvice(tomorrowWeather) : showError("Could not obtain tomorrows weather forecast.");
 }
 
 // recoge los datos de fetchWeatherData(), filtra x los relevantes y los devuelve como objeto (datos de hoy)
@@ -54,10 +54,10 @@ async function fetchWeatherData(latitude: number, longitude: number): Promise<We
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,uv_index,precipitation_probability&daily=weather_code&forecast_days=3&timezone=auto`;
     try {
         const res = await fetch(url);
-        if(!res.ok) throw new Error("No nos hemos podido conectar a la API del tiempo");
+        if(!res.ok) throw new Error("We were unable to connect to the weather API");
         return await res.json();        
     } catch(error){
-        showError("Error: No se pudo cargar el tiempo");
+        showError("Error: Could not load the weather");
         console.log(error);
         return null;
     }

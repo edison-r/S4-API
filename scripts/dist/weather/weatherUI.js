@@ -24,9 +24,9 @@ export function showWeather(weather) {
     <div class="flex flex-row justify-start items-center text-gray-700 gap-3 px-4 py-2">
         <div class="text-4xl">${icon}</div>
         <p>
-            <span class="font-medium">🌡️ Temperatura: </span> ${weather.temperature}°C 
+            <span class="font-medium">🌡️ Temperature: </span> ${weather.temperature}°C 
             &nbsp;•&nbsp;
-            <span class="font-medium">🌧️ Precipitación: </span> ${weather.precipitation_probability}% 
+            <span class="font-medium">🌧️ Rainfall: </span> ${weather.precipitation_probability}% 
             &nbsp;•&nbsp;
             <span class="font-medium">🔆 UV Index: </span> ${weather.uv_index}
         </p>
@@ -56,14 +56,14 @@ const getWeatherIcon = (code) => {
 };
 function getAdviceFromCode(code) {
     if (code === 0)
-        return "☀️ Mañana hará sol. ¡Ideal para un paseo!";
+        return "☀️ It will be sunny tomorrow. Let's go to the beach!";
     if ([1, 2, 3].includes(code))
-        return "🌤️ Mañana estará parcialmente nublado.";
+        return "🌤️ It will be partly cloudy tomorrow.";
     if ([45, 48].includes(code))
-        return "🌫️ Mañana habrá niebla. Ten cuidado al conducir.";
+        return "🌫️ There will be fog tomorrow. Drive carefully.";
     if ([51, 53, 55, 61, 63, 65].includes(code))
-        return "🌧️ Se esperan lluvias mañana. No olvides el paraguas.";
+        return "🌧️ Rain is expected tomorrow. Don't forget your umbrella!!";
     if ([66, 67, 71, 73, 75].includes(code))
-        return "❄️ Nieve a la vista. Abrígate bien.";
-    return "🤷‍♂️ El clima de mañana es incierto.";
+        return "❄️ Snow is coming. Dress warmly.";
+    return "🤷‍♂️ Tomorrow's weather is uncertain.";
 }
