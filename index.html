@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./src/output.css" rel="stylesheet">
-    <title>Good Morning!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>Gooooood Morning!</title>
 </head>
-<body class="flex flex-col items-center mx-auto max-w-[1200px] max-h-screen bg-gray-100">
-    <header class="flex flex-col items-center w-full" id="weather">
-        <section class="bg-amber-100 w-full" id="weather__display"></section>
-        <section class="w-full" id="weather__advice"></section>
-    </header>
-    <main class="px-4 py-8">
-        <section id="fact">
 
-        </section>
+<body class="bg-[url('../src/assets/img/bg_light_mode.jpg')] bg-fixed font-[Rubik] min-h-screen flex flex-col px-4 py-3 items-center mx-auto">
+    <header class="w-full max-w-md bg-blue-50 no_blur_shadow rounded-xl border-2 shadow-md p-3 mb-4" id="weather">
+        <section class="text-center text-sm mb-2" id="weather__display"></section>
+        <section class="text-sm text-gray-600" id="weather__advice"></section>
+    </header>
+    <main class="flex flex-col items-center max-w-md px-4 py-4">
+        <div id="image" class="flex justify-center w-full max-w-[280px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 shadow-md p-4 mb-4"></div>
+        <section id="fact" class="w-full max-w-md bg-blue-50 no_blur_shadow rounded-xl border-2 shadow-md p-4"></section>
     </main>
 
     <script src="scripts/dist/main.js" type="module" defer></script>

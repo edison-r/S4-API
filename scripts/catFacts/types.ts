@@ -13,3 +13,7 @@ export type DogFactResponse = {
         };
     }[];
 };
+
+export type CatImageResponse = {
+  url: string;
+};

@@ -1,6 +1,7 @@
-import { CatFactResponse, DogFactResponse} from "./types.js";
+import { CatFactResponse, CatImageResponse, DogFactResponse } from "./types.js";
 
 const randomFactDisplay = document.getElementById("fact") as HTMLElement;
+const randomImageDisplay = document.getElementById("image") as HTMLElement;
 
 export const showCatError = (mensaje: string): void => {
     randomFactDisplay.innerHTML= "";
@@ -23,7 +24,7 @@ const isCatFact = (fact: any): fact is CatFactResponse => { // type guard para v
     return Array.isArray(fact.data) && typeof fact.data[0] === "string";
 }
 
-const isDogFact = (fact: any): fact is DogFactResponse => {
+const isDogFact = (fact: any): fact is DogFactResponse => { // devuelve un "boolean"
     return Array.isArray(fact.data) &&  fact.data[0]?.attributes?.body !== undefined;
 }
 
@@ -39,4 +40,17 @@ export function showRandomFact(fact: CatFactResponse | DogFactResponse): void{
     }
 
     randomFactDisplay.textContent = text;
+}
+
+export function showRandomImage(image: CatImageResponse): void{
+    if(!randomImageDisplay) return;
+
+    randomImageDisplay.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.src = image.url;
+    img.alt = "Cute cat";
+    img.className = "max-w-xs rounded-lg";
+
+    randomImageDisplay.appendChild(img);
 }

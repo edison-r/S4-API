@@ -1,4 +1,5 @@
 const randomFactDisplay = document.getElementById("fact");
+const randomImageDisplay = document.getElementById("image");
 export const showCatError = (mensaje) => {
     randomFactDisplay.innerHTML = "";
     const error = document.createElement("p");
@@ -30,4 +31,14 @@ export function showRandomFact(fact) {
         text = fact.data[0].attributes.body;
     }
     randomFactDisplay.textContent = text;
+}
+export function showRandomImage(image) {
+    if (!randomImageDisplay)
+        return;
+    randomImageDisplay.innerHTML = "";
+    const img = document.createElement("img");
+    img.src = image.url;
+    img.alt = "Cute cat";
+    img.className = "max-w-xs rounded-lg";
+    randomImageDisplay.appendChild(img);
 }

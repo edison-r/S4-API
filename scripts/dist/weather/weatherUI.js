@@ -38,7 +38,7 @@ export function showTomorrowAdvice(code) {
         return;
     const message = getAdviceFromCode(code);
     adviceDisplay.innerHTML = message;
-    adviceDisplay.className = 'text-md w-full text-gray-700 bg-blue-100 px-4 py-1';
+    adviceDisplay.className = 'rounded-md text-sm w-full text-gray-700 px-4 py-1';
 }
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
 const getWeatherIcon = (code) => {
