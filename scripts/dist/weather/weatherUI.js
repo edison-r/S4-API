@@ -38,7 +38,7 @@ export function showTomorrowAdvice(code) {
         return;
     const message = getAdviceFromCode(code);
     adviceDisplay.innerHTML = message;
-    adviceDisplay.className = 'text-md w-full text-gray-700 px-4 py-1';
+    adviceDisplay.className = 'text-md w-full text-gray-700 bg-blue-100 px-4 py-1';
 }
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
 const getWeatherIcon = (code) => {
@@ -56,7 +56,7 @@ const getWeatherIcon = (code) => {
 };
 function getAdviceFromCode(code) {
     if (code === 0)
-        return "☀️ It will be sunny tomorrow. Let's go to the beach!";
+        return "☀️ It will be sunny tomorrow. Let's go to the";
     if ([1, 2, 3].includes(code))
         return "🌤️ It will be partly cloudy tomorrow.";
     if ([45, 48].includes(code))

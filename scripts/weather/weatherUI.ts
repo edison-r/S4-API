@@ -46,7 +46,7 @@ export function showTomorrowAdvice(code: number): void{
 
     const message = getAdviceFromCode(code);
     adviceDisplay.innerHTML = message;
-    adviceDisplay.className = 'text-md w-full text-gray-700 px-4 py-1';
+    adviceDisplay.className = 'text-md w-full text-gray-700 bg-blue-100 px-4 py-1';
 }
 
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
@@ -59,7 +59,7 @@ const getWeatherIcon = (code: number): string => {
     return "❓";
 }
 function getAdviceFromCode(code: number): string {
-    if (code === 0) return "☀️ It will be sunny tomorrow. Let's go to the beach!";
+    if (code === 0) return "☀️ It will be sunny tomorrow. Let's go to the";
     if ([1, 2, 3].includes(code)) return "🌤️ It will be partly cloudy tomorrow.";
     if ([45, 48].includes(code)) return "🌫️ There will be fog tomorrow. Drive carefully.";
     if ([51, 53, 55, 61, 63, 65].includes(code)) return "🌧️ Rain is expected tomorrow. Don't forget your umbrella!!";

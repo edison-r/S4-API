@@ -27,7 +27,6 @@ export async function fetchDogFacts() {
 }
 export async function getRandomFact() {
     let randomNum = Math.floor(Math.random() * 10) + 1;
-    console.log(randomNum);
     if (randomNum % 2 === 0) {
         const catFact = await fetchCatFacts();
         catFact ? showRandomFact(catFact) : showCatError("Error loading the curiosity");
