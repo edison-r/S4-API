@@ -33,7 +33,7 @@ export function showWeather(weather: CurrentWeatherInfo): void {
         <div class="text-[#272727] text-lg leading-tight">
             <p><span class="font-medium">🌡️ Temperature:</span> ${weather.temperature}°C</p>
             <p><span class="font-medium">🌧️ Rainfall:</span> ${weather.precipitation_probability}% • 
-            <span class="font-medium">🔆 UV Index:</span> ${weather.uv_index}</p>
+            <span class="font-medium">🔆 UV Index:</span> ${weather.uv_index.toFixed(0)}</p>
         </div>
     </div>
     `;
