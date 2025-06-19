@@ -28,15 +28,13 @@ export function showWeather(weather: CurrentWeatherInfo): void {
     const icon = getWeatherIcon(weather.weather_code);
 
     weatherDisplay.innerHTML = `
-    <div class="flex flex-row justify-start items-center text-gray-700 gap-3 px-4 py-2">
-        <div class="text-4xl">${icon}</div>
-        <p>
-            <span class="font-medium">🌡️ Temperature: </span> ${weather.temperature}°C 
-            &nbsp;•&nbsp;
-            <span class="font-medium">🌧️ Rainfall: </span> ${weather.precipitation_probability}% 
-            &nbsp;•&nbsp;
-            <span class="font-medium">🔆 UV Index: </span> ${weather.uv_index}
-        </p>
+    <div class="flex flex-row justify-center items-center text-[#272727] gap-5 px-4 pt-2">
+        <div class="text-5xl">${icon}</div>
+        <div class="text-[#272727] text-lg leading-tight">
+            <p><span class="font-medium">🌡️ Temperature:</span> ${weather.temperature}°C</p>
+            <p><span class="font-medium">🌧️ Rainfall:</span> ${weather.precipitation_probability}% • 
+            <span class="font-medium">🔆 UV Index:</span> ${weather.uv_index}</p>
+        </div>
     </div>
     `;
 }
@@ -46,7 +44,6 @@ export function showTomorrowAdvice(code: number): void{
 
     const message = getAdviceFromCode(code);
     adviceDisplay.innerHTML = message;
-    adviceDisplay.className = 'rounded-md text-sm w-full text-gray-700 px-4 py-1';
 }
 
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API

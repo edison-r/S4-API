@@ -3,3 +3,8 @@
 .no_blur_shadow {
   filter: drop-shadow(4px 4px 0px black); 
 }
+
+.safe-area {
+  padding-top: 32px;
+  padding-bottom: 24px;
+}

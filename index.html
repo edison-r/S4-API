@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link href="./src/output.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,14 +10,15 @@
     <title>Gooooood Morning!</title>
 </head>
 
-<body class="bg-[url('../src/assets/img/bg_light_mode.jpg')] bg-fixed font-[Rubik] min-h-screen flex flex-col px-4 py-3 items-center mx-auto">
-    <header class="w-full max-w-md bg-blue-50 no_blur_shadow rounded-xl border-2 shadow-md p-3 mb-4" id="weather">
+<body class="safe-area bg-[url('../src/assets/img/bg_light_mode.jpg')] bg-fixed bg-center bg-cover font-[Rubik] min-h-screen flex flex-col px-4 py-3 items-center mx-auto">
+    <header class="w-full max-w-md bg-[#EFF6FF] no_blur_shadow rounded-2xl border-2 p-2 mb-4" id="weather">
         <section class="text-center text-sm mb-2" id="weather__display"></section>
-        <section class="text-sm text-gray-600" id="weather__advice"></section>
+        <section class="text-sm font-medium text-[#525252] pl-4" id="weather__advice"></section>
     </header>
     <main class="flex flex-col items-center max-w-md px-4 py-4">
-        <div id="image" class="flex justify-center w-full max-w-[280px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 shadow-md p-4 mb-4"></div>
-        <section id="fact" class="w-full max-w-md bg-blue-50 no_blur_shadow rounded-xl border-2 shadow-md p-4"></section>
+        <div id="image" class="flex justify-center w-full max-w-[280px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 p-4 mb-4"></div>
+        <!-- <div class="flex justify-center w-full max-w-[280px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 p-4 mb-4"></div> -->
+        <section id="fact" class="w-full max-w-md bg-[#EFF6FF] no_blur_shadow rounded-xl border-2 p-4"></section>
     </main>
 
     <script src="scripts/dist/main.js" type="module" defer></script>
