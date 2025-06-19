@@ -17,3 +17,8 @@ export type DogFactResponse = {
 export type CatImageResponse = {
   url: string;
 };
+
+export type FactRating = {
+  fact: string;
+  liked: boolean;
+};

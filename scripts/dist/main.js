@@ -1,12 +1,6 @@
-import { getRandomFact } from "./catFacts/catApi.js";
+import { getRandomFact } from "./catFacts/factsApi.js";
 import { getUserLocation } from "./weather/weatherApi.js";
-import { fetchCatImage } from "./catFacts/catImg.js";
-import { showRandomImage } from "./catFacts/catUI.js";
+import { showImage } from "./catFacts/catUI.js";
 getUserLocation();
 getRandomFact();
-async function mostrarImagen() {
-    const imgData = await fetchCatImage();
-    if (imgData)
-        showRandomImage(imgData);
-}
-mostrarImagen();
+showImage();
