@@ -1,41 +1,40 @@
+import { getWeather, extractCurrentWeatherInfo } from "../services/weatherService.js";
+import { getUserLocation } from "../services/userLocation.js";
 const weatherDisplay = document.getElementById("weather__display");
 const adviceDisplay = document.querySelector("#weather__advice");
-// Funciones auxiliares para mostrar o mensajes o mensajes de error
-export const showError = (mensaje) => {
-    weatherDisplay.innerHTML = "";
-    const error = document.createElement("p");
-    error.textContent = mensaje;
-    error.className = 'text-red-400 mt-2 font-medium';
-    weatherDisplay.appendChild(error);
-};
-export const mostrarMessage = (mensaje) => {
-    weatherDisplay.innerHTML = "";
-    const msg = document.createElement("p");
-    msg.textContent = mensaje;
-    msg.className = 'text-gray-500 mt-2 font-medium';
-    weatherDisplay.appendChild(msg);
-};
 // Recibe el CurrentWeatherInfo(info curada) de types y actualiza el HTML
-export function showWeather(weather) {
-    if (!weatherDisplay)
+export async function renderWeather(lat, lon) {
+    const data = await getWeather(lat, lon);
+    if (!data || !weatherDisplay)
         return;
-    const icon = getWeatherIcon(weather.weather_code);
+    const current = extractCurrentWeatherInfo(data);
+    if (!current) {
+        weatherDisplay.textContent = "⚠️ Unable to extract weather data";
+        return;
+    }
+    ;
+    const icon = getWeatherIcon(current.weather_code);
     weatherDisplay.innerHTML = `
     <div class="flex flex-row justify-center items-center text-[#272727] gap-5 px-4 pt-2">
         <div class="text-5xl">${icon}</div>
         <div class="text-[#272727] text-lg leading-tight">
-            <p><span class="font-medium">🌡️ Temperature:</span> ${weather.temperature}°C</p>
-            <p><span class="font-medium">🌧️ Rainfall:</span> ${weather.precipitation_probability}% • 
-            <span class="font-medium">🔆 UV Index:</span> ${weather.uv_index.toFixed(0)}</p>
+            <p><span class="font-medium">🌡️ Temperature:</span> ${current.temperature.toFixed(0)}°C</p>
+            <p><span class="font-medium">🌧️ Rainfall:</span> ${current.precipitation_probability}% • 
+            <span class="font-medium">🔆 UV Index:</span> ${current.uv_index.toFixed(0)}</p>
         </div>
     </div>
     `;
+    showTomorrowAdvice(current.weather_code);
 }
 export function showTomorrowAdvice(code) {
     if (!adviceDisplay)
         return;
     const message = getAdviceFromCode(code);
     adviceDisplay.innerHTML = message;
+}
+export async function startWeather() {
+    const { lat, lon } = await getUserLocation();
+    renderWeather(lat, lon);
 }
 // Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
 const getWeatherIcon = (code) => {
