@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "tailwindcss/preflight";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.no_blur_shadow {
+  filter: drop-shadow(4px 4px 0px black); 
+}
+
+.safe-area {
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}

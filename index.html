@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#eddec5]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="./src/assets/img/cat_sun.png" type="image/png" sizes="32x32">
+    <title>Gooooood Morning!</title>
+</head>
+
+<body class="safe-area bg-[url('../src/assets/img/bg_light_mode.jpg')] bg-fixed bg-center bg-cover font-[Rubik] min-h-screen flex flex-col px-4 py-3 items-center mx-auto">
+    <header class="w-full max-w-md bg-[#EFF6FF] no_blur_shadow rounded-2xl border-2 p-2 mb-8" id="weather">
+        <section class="text-center text-sm mb-2" id="weather__display"></section>
+        <section class="text-sm font-medium text-[#525252] pl-4" id="weather__advice"></section>
+    </header>
+    <main class="flex flex-col items-center max-w-md px-4 py-4">
+        <div id="image" class="flex justify-center w-[290px] h-[330px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 p-4 mb-12 cursor-pointer"></div>
+        <!-- <div class="flex justify-center w-full max-w-[280px] bg-[#FCD5CE] no_blur_shadow rounded-xl border-2 p-4 mb-4"></div> -->
+        <section id="fact" class="w-full max-w-md bg-[#EFF6FF] no_blur_shadow rounded-xl border-2 p-4 mb-4"></section>
+        <section id="rate" class="w-72 flex flex-row justify-between gap-8">
+            <div id="dislike" class="group relative overflow-hidden w-full max-w-md bg-[#EFF6FF] rounded-xl border-2 border-black px-4 py-1 text-center leading-none transition-all duration-100 [box-shadow:4px_4px_rgb(0_0_0)] active:text-[#D85959] active:border-[#D85959] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(0_0_0)]">
+                <p class="text-3xl">😾</p>
+                <p class="font-medium">Meh...</p>
+            </div>
+            <div id="like" class="group relative overflow-hidden w-full max-w-md bg-[#EFF6FF] rounded-xl border-2 border-black px-4 py-1 text-center leading-none transition-all duration-100 [box-shadow:4px_4px_rgb(0_0_0)] active:text-[#4BB77F] active:border-[#4BB77F] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(0_0_0)]">
+                <p class="text-3xl">😺</p>
+                <p class="font-medium">Liked!</p>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <!-- <div id="switchMode" class="fixed bottom-6 right-6 z-50 w-12 h-12 flex items-center justify-center bg-[#EFF6FF] no_blur_shadow rounded-full border-2 cursor-pointer transition-colors duration-300">
+            <img src="./src/assets/img/icon_cat_light.png" class="h-10 w-10"/>
+        </div> Future dark mode switch--> 
+    </footer>
+
+    <script src="scripts/dist/main.js" type="module" defer></script>
+</body>
+</html>
