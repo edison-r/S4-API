@@ -1,4 +1,4 @@
-import { CatImageResponse } from "../types/catTypes";
+import { CatImageResponse } from "../catFacts/types";
 
 export async function fetchCatImage(): Promise<CatImageResponse | null> {
     const url = `https://cataas.com/cat?json=true&width=250&height=300`;

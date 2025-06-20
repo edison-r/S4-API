@@ -10,3 +10,12 @@ export interface DogFactResponse {
     }
   }[]
 }
+
+export interface CatImageResponse {
+    url: string
+}
+
+export interface CardContent {
+    fact: string
+    imageUrl: string
+}

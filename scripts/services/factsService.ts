@@ -24,6 +24,6 @@ export async function fetchDogFacts(): Promise<string | null>{
 
 export async function getRandomFact(): Promise<string | null>{
     const isEven = Math.floor((Math.random() * 10) + 1) % 2 === 0;
-    const fact = isEven ? await fetchCatFacts() :await fetchDogFacts();
+    const fact = isEven ? await fetchCatFacts() : await fetchDogFacts();
     return fact;
 }

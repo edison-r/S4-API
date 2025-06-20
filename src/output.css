@@ -553,6 +553,9 @@
   .text-red-400 {
     color: var(--color-red-400);
   }
+  .opacity-0 {
+    opacity: 0%;
+  }
   .\[box-shadow\:4px_4px_rgb\(0_0_0\)\] {
     box-shadow: 4px 4px rgb(0 0 0);
   }
@@ -575,6 +578,11 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .duration-100 {
     --tw-duration: 100ms;
     transition-duration: 100ms;
@@ -582,6 +590,10 @@
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
+  }
+  .duration-500 {
+    --tw-duration: 500ms;
+    transition-duration: 500ms;
   }
   .hover\:transform {
     &:hover {

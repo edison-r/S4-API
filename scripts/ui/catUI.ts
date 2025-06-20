@@ -1,70 +1,35 @@
-import { CatFactResponse, CatImageResponse, DogFactResponse } from "../types/catTypes.js";
-import { getFactRatings, rateFact } from "./rateFacts.js";
-import { fetchCatImage } from "../services/catImg.js";
-import { getRandomFact } from "../services/factsApi.js";
+import { getCatImageUrl } from "../services/imageService.js";
+import { getRandomFact } from "../services/factsService.js";
+import { CardContent } from "../types/factsTypes.js"
 
-const randomFactDisplay = document.getElementById("fact") as HTMLElement;
-const randomImageDisplay = document.getElementById("image") as HTMLElement;
-const likeButton = document.getElementById("like") as HTMLButtonElement;
-const dislikeButton = document.getElementById("dislike") as HTMLButtonElement;
+const imageContainer = document.getElementById("image") as HTMLElement;
+const factContainer = document.getElementById("fact") as HTMLElement;
 
-const isCatFact = (fact: any): fact is CatFactResponse => { // type guard para verificar si es cat/dog fact
-    return Array.isArray(fact.data) && typeof fact.data[0] === "string";
-}
+const buffer: CardContent[] = []; //buffer de imágenes y facts
+let currentIndex = 0;
 
-const isDogFact = (fact: any): fact is DogFactResponse => { // devuelve un "boolean"
-    return Array.isArray(fact.data) &&  fact.data[0]?.attributes?.body !== undefined;
-}
-
-export function showRandomFact(fact: CatFactResponse | DogFactResponse): void{
-    if(!randomFactDisplay) return;
-
-    let text = ""
-
-    if(isCatFact(fact)){
-        text = fact.data[0];
-    } else if(isDogFact(fact)){
-        text = fact.data[0].attributes.body;
+export async function preloadBuffer(count = 3) {
+    while(buffer.length < count){
+        const [fact, imageUrl] = await Promise.all([getRandomFact(), getCatImageUrl()]);
+        if(fact && imageUrl) {
+            buffer.push({ fact, imageUrl });
+        }
     }
-
-    randomFactDisplay.textContent = text;
 }
 
-export function showRandomImage(image: CatImageResponse): void{
-    if(!randomImageDisplay) return;
+export function showCurrentCard(){
+    const current = buffer[currentIndex];
+    console.log(buffer);
 
-    randomImageDisplay.innerHTML = "";
+    if(!current || !imageContainer || !factContainer) return;
 
+    imageContainer.innerHTML= ""
     const img = document.createElement("img");
-    img.src = image.url;
-    img.alt = "Cute cat";
+    img.src = current.imageUrl;
+    img.alt = "Cute cat image";
     img.className = "max-w-xs rounded-lg";
 
-    randomImageDisplay.appendChild(img);
+    imageContainer.appendChild(img);
+
+    factContainer.textContent = current.fact;
 }
-
-export async function showImage() {
-  const imgData = await fetchCatImage();
-  if (imgData) showRandomImage(imgData);
-}
-
-
-likeButton.addEventListener("click", () => {
-    const factText = randomFactDisplay.textContent;
-    if (factText) {
-        rateFact(factText, true);
-        showImage();
-        getRandomFact();
-        console.log("Fact ratings:", getFactRatings());
-    }
-});
-
-dislikeButton.addEventListener("click", () => {
-    const factText = randomFactDisplay.textContent;
-    if (factText) {
-        rateFact(factText, false);
-        showImage();
-        getRandomFact();
-        console.log("Fact ratings:", getFactRatings());
-    }
-});
