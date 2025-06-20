@@ -12,6 +12,12 @@ export async function preloadBuffer(count = 3) {
         }
     }
 }
+export function fadeIn(element) {
+    requestAnimationFrame(() => {
+        element.classList.remove('opacity-0');
+        element.classList.add('transition-opacity', 'duration-500');
+    });
+}
 export function showCurrentCard() {
     const current = buffer[currentIndex];
     console.log(buffer);
@@ -21,7 +27,18 @@ export function showCurrentCard() {
     const img = document.createElement("img");
     img.src = current.imageUrl;
     img.alt = "Cute cat image";
-    img.className = "max-w-xs rounded-lg";
+    img.className = "opacity-0 transition-opacity duration-500 max-w-xs rounded-lg";
     imageContainer.appendChild(img);
-    factContainer.textContent = current.fact;
+    factContainer.innerHTML = "";
+    const p = document.createElement("p");
+    p.textContent = current.fact;
+    factContainer.appendChild(p);
+    fadeIn(img);
+    fadeIn(p);
+}
+export function handleNextCard() {
+    buffer.shift(); // quito la carta que se muestra
+    currentIndex = 0;
+    showCurrentCard();
+    preloadBuffer();
 }
