@@ -1,6 +1,6 @@
-import { getRandomFact } from "./catFacts/factsApi.js";
-import { getUserLocation } from "./weather/weatherApi.js";
-import { showImage } from "./catFacts/catUI.js";
+import { getRandomFact } from "./services/factsApi.js";
+import { getUserLocation } from "./services/weatherApi.js";
+import { showImage } from "./ui/catUI.js";
 getUserLocation();
 getRandomFact();
 showImage();

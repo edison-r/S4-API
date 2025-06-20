@@ -1,5 +1,5 @@
-import { WeatherResponse, CurrentWeatherInfo } from "./types.js"; 
-import { showWeather, showError, showTomorrowAdvice } from "./weatherUI.js";
+import { WeatherResponse, CurrentWeatherInfo } from "../types/weatherTypes.js"; 
+import { showWeather, showError, showTomorrowAdvice } from "../ui/weatherUI.js";
 
 // Intenta obtener la localización real del usuario; si no, usa la de Barcelona
 export async function getUserLocation(): Promise<void> {

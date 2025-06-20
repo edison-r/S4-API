@@ -1,4 +1,4 @@
-import { CurrentWeatherInfo } from "./types.js";
+import { CurrentWeatherInfo } from "../types/weatherTypes.js";
 
 const weatherDisplay = document.getElementById("weather__display") as HTMLElement;
 const adviceDisplay = document.querySelector("#weather__advice") as HTMLElement;

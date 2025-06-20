@@ -1,4 +1,4 @@
-import { FactRating } from './types.js';
+import { FactRating } from '../types/catTypes.js';
 
 const factRatings: FactRating[] = [];
 

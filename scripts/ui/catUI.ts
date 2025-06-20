@@ -1,7 +1,7 @@
-import { CatFactResponse, CatImageResponse, DogFactResponse } from "./types.js";
+import { CatFactResponse, CatImageResponse, DogFactResponse } from "../types/catTypes.js";
 import { getFactRatings, rateFact } from "./rateFacts.js";
-import { fetchCatImage } from "./catImg.js";
-import { getRandomFact } from "./factsApi.js";
+import { fetchCatImage } from "../services/catImg.js";
+import { getRandomFact } from "../services/factsApi.js";
 
 const randomFactDisplay = document.getElementById("fact") as HTMLElement;
 const randomImageDisplay = document.getElementById("image") as HTMLElement;
