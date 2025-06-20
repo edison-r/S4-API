@@ -1,9 +1,6 @@
-import { getWeather } from "../services/weatherService"
-import { renderWeather } from '../ui/weatherUI.js';
-
 export async function getUserLocation(): Promise<{lat: number, lon: number}> {
     let lat = 41.3888;
-    let lon = 2.159; // Barcelona por defecto
+    let lon = 2.159;
 
     if (navigator.geolocation) {
         try {

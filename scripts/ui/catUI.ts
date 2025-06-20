@@ -1,6 +1,7 @@
 import { getCatImageUrl } from "../services/imageService.js";
 import { getRandomFact } from "../services/factsService.js";
 import { CardContent } from "../types/types.js"
+import { rateFact } from '../services/rateService.js'
 
 const imageContainer = document.getElementById("image") as HTMLElement;
 const factContainer = document.getElementById("fact") as HTMLElement;
@@ -26,8 +27,6 @@ export function fadeIn(element: HTMLElement){
 
 export function showCurrentCard(){
     const current = buffer[currentIndex];
-    console.log(buffer);
-
     if(!current || !imageContainer || !factContainer) return;
 
     imageContainer.innerHTML= ""
@@ -54,4 +53,12 @@ export function handleNextCard() {
 
     showCurrentCard();
     preloadBuffer();
+}
+
+export function handleVote(liked: boolean): void {
+  const current = buffer[0];
+  if (!current) return;
+
+  rateFact(current.fact, liked);
+  handleNextCard();
 }

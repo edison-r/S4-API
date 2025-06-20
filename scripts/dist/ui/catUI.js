@@ -1,5 +1,6 @@
 import { getCatImageUrl } from "../services/imageService.js";
 import { getRandomFact } from "../services/factsService.js";
+import { rateFact } from '../services/rateService.js';
 const imageContainer = document.getElementById("image");
 const factContainer = document.getElementById("fact");
 const buffer = []; //buffer de imágenes y facts
@@ -20,7 +21,6 @@ export function fadeIn(element) {
 }
 export function showCurrentCard() {
     const current = buffer[currentIndex];
-    console.log(buffer);
     if (!current || !imageContainer || !factContainer)
         return;
     imageContainer.innerHTML = "";
@@ -41,4 +41,11 @@ export function handleNextCard() {
     currentIndex = 0;
     showCurrentCard();
     preloadBuffer();
+}
+export function handleVote(liked) {
+    const current = buffer[0];
+    if (!current)
+        return;
+    rateFact(current.fact, liked);
+    handleNextCard();
 }

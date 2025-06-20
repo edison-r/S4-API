@@ -1,6 +1,8 @@
 import { preloadBuffer, showCurrentCard, handleNextCard } from "./ui/catUI.js";
-import { getUserLocation } from "./services/userLocation.js";
-import { renderWeather } from "./ui/weatherUI.js"
+import { startWeather } from "./ui/weatherUI.js"
+import { handleVote } from "./ui/catUI.js";
+
+startWeather();
 
 document.addEventListener('DOMContentLoaded', async () => {
     await preloadBuffer();
@@ -11,11 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     likeBtn?.addEventListener('click', handleNextCard);
     dislikeBtn?.addEventListener('click', handleNextCard);
+
+    likeBtn?.addEventListener('click', () => handleVote(true));
+    dislikeBtn?.addEventListener('click', () => handleVote(false));
 })
-
-async function startWeather() {
-    const { lat, lon } = await getUserLocation();
-    renderWeather(lat, lon);
-}
-
-startWeather();

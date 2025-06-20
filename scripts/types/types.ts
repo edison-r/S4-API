@@ -24,7 +24,6 @@ export interface WeatherData {
  * weather_code: qué tipo de clima (0 despejado, 61 lluvia, 71 nieve, etc...)
  */
 
-// Types para cat
 export interface MeowFactResponse {
   data: string[]
 }
@@ -45,4 +44,10 @@ export interface CatImageResponse {
 export interface CardContent {
     fact: string
     imageUrl: string
+}
+
+export interface RatedFact {
+  text: string
+  liked: boolean
+  timestamp: number
 }

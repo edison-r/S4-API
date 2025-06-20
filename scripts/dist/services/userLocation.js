@@ -1,6 +1,6 @@
 export async function getUserLocation() {
     let lat = 41.3888;
-    let lon = 2.159; // Barcelona por defecto
+    let lon = 2.159;
     if (navigator.geolocation) {
         try {
             const position = await new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject));
