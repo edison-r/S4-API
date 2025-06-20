@@ -1,24 +1,10 @@
-import { rateFact } from "./rateFacts.js";
+import { getFactRatings, rateFact } from "./rateFacts.js";
 import { fetchCatImage } from "./catImg.js";
 import { getRandomFact } from "./factsApi.js";
 const randomFactDisplay = document.getElementById("fact");
 const randomImageDisplay = document.getElementById("image");
 const likeButton = document.getElementById("like");
 const dislikeButton = document.getElementById("dislike");
-export const showCatError = (mensaje) => {
-    randomFactDisplay.innerHTML = "";
-    const error = document.createElement("p");
-    error.textContent = mensaje;
-    error.className = 'text-red-400 mt-2 font-medium';
-    randomFactDisplay.appendChild(error);
-};
-export const showCatMessage = (mensaje) => {
-    randomFactDisplay.innerHTML = "";
-    const msg = document.createElement("p");
-    msg.textContent = mensaje;
-    msg.className = 'text-gray-500 mt-2 font-medium';
-    randomFactDisplay.appendChild(msg);
-};
 const isCatFact = (fact) => {
     return Array.isArray(fact.data) && typeof fact.data[0] === "string";
 };
@@ -58,6 +44,7 @@ likeButton.addEventListener("click", () => {
         rateFact(factText, true);
         showImage();
         getRandomFact();
+        console.log("Fact ratings:", getFactRatings());
     }
 });
 dislikeButton.addEventListener("click", () => {
@@ -66,5 +53,6 @@ dislikeButton.addEventListener("click", () => {
         rateFact(factText, false);
         showImage();
         getRandomFact();
+        console.log("Fact ratings:", getFactRatings());
     }
 });

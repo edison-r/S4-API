@@ -7,7 +7,6 @@ export function rateFact(fact, liked) {
     else {
         factRatings.push({ fact, liked });
     }
-    console.log(factRatings);
 }
 export function getFactRatings() {
     return factRatings;

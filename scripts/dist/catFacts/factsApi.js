@@ -1,4 +1,4 @@
-import { showRandomFact, showCatError } from "./catUI.js";
+import { showRandomFact } from "./catUI.js";
 export async function fetchCatFacts() {
     const url = `https://meowfacts.herokuapp.com/`;
     try {
@@ -29,10 +29,10 @@ export async function getRandomFact() {
     let randomNum = Math.floor(Math.random() * 10) + 1;
     if (randomNum % 2 === 0) {
         const catFact = await fetchCatFacts();
-        catFact ? showRandomFact(catFact) : showCatError("Error loading the curiosity");
+        catFact ? showRandomFact(catFact) : console.error("Error loading the curiosity");
     }
     else {
         const dogFAct = await fetchDogFacts();
-        dogFAct ? showRandomFact(dogFAct) : showCatError("Error loading the curiosity");
+        dogFAct ? showRandomFact(dogFAct) : console.error("Error loading the curiosity");
     }
 }

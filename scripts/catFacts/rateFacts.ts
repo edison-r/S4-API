@@ -9,7 +9,6 @@ export function rateFact(fact: string, liked: boolean): void {
     } else {
         factRatings.push({ fact, liked });
     }
-    console.log(factRatings);
 }
 
 export function getFactRatings(): FactRating[] {
