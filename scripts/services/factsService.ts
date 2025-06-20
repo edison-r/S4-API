@@ -1,6 +1,6 @@
 import { fetchData } from "./apiService.js";
 import { API_URLS } from "../utils/env.js";
-import { MeowFactResponse, DogFactResponse} from "../types/factsTypes.js"
+import { MeowFactResponse, DogFactResponse} from "../types/types.js"
 
 export async function fetchCatFacts(): Promise<string | null>{
     try {

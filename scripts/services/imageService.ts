@@ -1,6 +1,6 @@
 import { fetchData } from "./apiService.js";
 import { API_URLS } from "../utils/env.js";
-import { CatImageResponse } from "../types/factsTypes.js"
+import { CatImageResponse } from "../types/types.js"
 
 export async function getCatImageUrl(): Promise<string | null>{
     try{

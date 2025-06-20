@@ -1,6 +1,6 @@
 import { getCatImageUrl } from "../services/imageService.js";
 import { getRandomFact } from "../services/factsService.js";
-import { CardContent } from "../types/factsTypes.js"
+import { CardContent } from "../types/types.js"
 
 const imageContainer = document.getElementById("image") as HTMLElement;
 const factContainer = document.getElementById("fact") as HTMLElement;
