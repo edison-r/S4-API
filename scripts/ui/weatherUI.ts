@@ -5,7 +5,6 @@ import { getUserLocation } from "../services/userLocation.js";
 const weatherDisplay = document.getElementById("weather__display") as HTMLElement;
 const adviceDisplay = document.querySelector("#weather__advice") as HTMLElement;
 
-// Recibe el CurrentWeatherInfo(info curada) de types y actualiza el HTML
 export async function renderWeather(lat: number, lon: number): Promise<void> {
     const data = await getWeather(lat, lon);
     if (!data || !weatherDisplay) return;
@@ -43,20 +42,19 @@ export async function startWeather() {
     renderWeather(lat, lon);
 }
 
-// Funciones auxiliares que mandan un icono o un mensaje según los datos de la API
 const getWeatherIcon = (code: number): string => {
-    if (code === 0) return "☀️";
-    if ([1, 2, 3].includes(code)) return "⛅";
+    if ([0, 1].includes(code)) return "☀️";
+    if ([2, 3].includes(code)) return "🌤️";
     if ([45, 48].includes(code)) return "🌫️";
-    if ([51, 53, 55, 61, 63, 65].includes(code)) return "🌧️";
-    if ([66, 67, 71, 73, 75].includes(code)) return "❄️";
+    if ([51, 53, 55, 56, 57, 61, 63, 65, 80, 81, 82].includes(code)) return "🌧️";
+    if ([66, 67, 71, 73, 75, 77, 85, 86].includes(code)) return "❄️";
     return "❓";
 }
 function getAdviceFromCode(code: number): string {
-    if (code === 0) return "☀️ It will be sunny tomorrow. Let's go to the";
-    if ([1, 2, 3].includes(code)) return "🌤️ It will be partly cloudy tomorrow.";
+    if ([0, 1].includes(code)) return "☀️ It will be sunny tomorrow. Let's go to the";
+    if ([2, 3].includes(code)) return "🌤️ It will be partly cloudy tomorrow.";
     if ([45, 48].includes(code)) return "🌫️ There will be fog tomorrow. Drive carefully.";
-    if ([51, 53, 55, 61, 63, 65].includes(code)) return "🌧️ Rain is expected tomorrow. Don't forget your umbrella!!";
-    if ([66, 67, 71, 73, 75].includes(code)) return "❄️ Snow is coming. Dress warmly.";
+    if ([51, 53, 55, 56, 57, 61, 63, 65, 80, 81, 82].includes(code)) return "🌧️ Rain is expected tomorrow. Don't forget your umbrella!!";
+    if ([66, 67, 71, 73, 75, 77, 85, 86].includes(code)) return "❄️ Snow is coming. Dress warmly.";
     return "🤷‍♂️ Tomorrow's weather is uncertain.";
 }

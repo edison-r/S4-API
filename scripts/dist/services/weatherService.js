@@ -12,8 +12,8 @@ export async function getWeather(lat, lon) {
     }
 }
 export function extractCurrentWeatherInfo(data) {
-    const now = getCurrentDate(); // Recupero la fecha de hoy con formato que entiende la API
-    const index = data.hourly.time.findIndex((t) => t.startsWith(now)); // Buscamos la hora actual en el índice
+    const now = getCurrentDate();
+    const index = data.hourly.time.findIndex((t) => t.startsWith(now));
     if (index === -1)
         return null;
     return {
@@ -23,7 +23,6 @@ export function extractCurrentWeatherInfo(data) {
         weather_code: data.daily.weather_code[0],
     };
 }
-// recuperar la fecha con la hora en formato YY-MM-DDTHH
 const getCurrentDate = () => {
     const now = new Date();
     const year = now.getFullYear();

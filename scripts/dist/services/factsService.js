@@ -3,7 +3,7 @@ import { API_URLS } from "../utils/env.js";
 export async function fetchCatFacts() {
     try {
         const data = await fetchData(API_URLS.meowFact);
-        return data?.data?.[0] ?? null; // ? optional-chaining: si data existe, y dentro hay otra data (el array), y existe el primer elemento, dámelo.
+        return data?.data?.[0] ?? null;
     }
     catch (error) {
         console.error("Error loading cat fact:", error);

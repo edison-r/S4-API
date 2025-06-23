@@ -1,4 +1,4 @@
-export async function fetchData<T>(url: string, options: RequestInit = {}): Promise<T>{ // <T> es el tipo de datos: <MeowFactResponse> x ejemplo
+export async function fetchData<T>(url: string, options: RequestInit = {}): Promise<T>{
     try{
         const response = await fetch(url, options);
 

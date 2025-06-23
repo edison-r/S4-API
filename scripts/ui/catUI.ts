@@ -6,7 +6,7 @@ import { rateFact } from '../services/rateService.js'
 const imageContainer = document.getElementById("image") as HTMLElement;
 const factContainer = document.getElementById("fact") as HTMLElement;
 
-const buffer: CardContent[] = []; //buffer de imágenes y facts
+const buffer: CardContent[] = [];
 let currentIndex = 0;
 
 export async function preloadBuffer(count = 3) {
@@ -20,8 +20,8 @@ export async function preloadBuffer(count = 3) {
 
 export function fadeIn(element: HTMLElement){
     requestAnimationFrame(() => {
-        element.classList.remove('opacity-0')
-        element.classList.add('transition-opacity', 'duration-500');
+        element.classList.remove("opacity-0")
+        element.classList.add("transition-opacity", "duration-500");
     });
 }
 
@@ -41,14 +41,13 @@ export function showCurrentCard(){
     const p = document.createElement("p");
     p.textContent = current.fact;
     factContainer.appendChild(p);
-
     
     fadeIn(img);
     fadeIn(p);
 }
 
 export function handleNextCard() {
-    buffer.shift(); // quito la carta que se muestra
+    buffer.shift();
     currentIndex = 0;
 
     showCurrentCard();

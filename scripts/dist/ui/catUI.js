@@ -3,7 +3,7 @@ import { getRandomFact } from "../services/factsService.js";
 import { rateFact } from '../services/rateService.js';
 const imageContainer = document.getElementById("image");
 const factContainer = document.getElementById("fact");
-const buffer = []; //buffer de imágenes y facts
+const buffer = [];
 let currentIndex = 0;
 export async function preloadBuffer(count = 3) {
     while (buffer.length < count) {
@@ -15,8 +15,8 @@ export async function preloadBuffer(count = 3) {
 }
 export function fadeIn(element) {
     requestAnimationFrame(() => {
-        element.classList.remove('opacity-0');
-        element.classList.add('transition-opacity', 'duration-500');
+        element.classList.remove("opacity-0");
+        element.classList.add("transition-opacity", "duration-500");
     });
 }
 export function showCurrentCard() {
@@ -37,7 +37,7 @@ export function showCurrentCard() {
     fadeIn(p);
 }
 export function handleNextCard() {
-    buffer.shift(); // quito la carta que se muestra
+    buffer.shift();
     currentIndex = 0;
     showCurrentCard();
     preloadBuffer();

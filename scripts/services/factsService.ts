@@ -5,7 +5,7 @@ import { MeowFactResponse, DogFactResponse} from "../types/types.js"
 export async function fetchCatFacts(): Promise<string | null>{
     try {
         const data = await fetchData<MeowFactResponse>(API_URLS.meowFact)
-        return data?.data?.[0] ?? null; // ? optional-chaining: si data existe, y dentro hay otra data (el array), y existe el primer elemento, dámelo.
+        return data?.data?.[0] ?? null;
     } catch(error){
         console.error("Error loading cat fact:", error)
         return null;
