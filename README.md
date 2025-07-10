@@ -20,6 +20,9 @@ All API calls are **centralized and modularized** to keep things scalable.
 - Geolocation API (to detect your position)
 - Mobile-first UX/UI
 
+## Demo
+![demo_video](./images/Demo_PetsFacts.gif)
+
 ## Main Features
 
 ### Cat Facts & Images
